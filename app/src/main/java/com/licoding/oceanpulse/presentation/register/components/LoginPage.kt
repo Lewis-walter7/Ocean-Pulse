@@ -1,7 +1,6 @@
 package com.licoding.oceanpulse.presentation.register.components
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
@@ -11,7 +10,6 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
@@ -24,19 +22,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.licoding.oceanpulse.presentation.register.RegisterUIEvent
+import com.licoding.oceanpulse.presentation.register.RegisterUIState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LoginPage(
     navController: NavController,
-    onEvent: (RegisterUIEvent) -> Unit
+    onEvent: (RegisterUIEvent) -> Unit,
+    state: RegisterUIState
 ) {
-    var email by remember {
-        mutableStateOf("")
-    }
-    var password by remember {
-        mutableStateOf("")
-    }
     var setIsPasswordVisible by remember {
         mutableStateOf(false)
     }
@@ -74,9 +68,9 @@ fun LoginPage(
             )
             Spacer(modifier = Modifier.height(20.dp))
             OutlinedTextField(
-                value = email,
+                value = state.loginEmail ?: "",
                 onValueChange = {
-                    email = it
+                    onEvent(RegisterUIEvent.OnLoginEmailChange(it))
                 },
                 placeholder = {
                     Text(
@@ -88,9 +82,9 @@ fun LoginPage(
             )
             Spacer(modifier = Modifier.height(16.dp))
             OutlinedTextField(
-                value = password,
+                value = state.loginPassword ?: "",
                 onValueChange = {
-                     password = it
+                     onEvent(RegisterUIEvent.OnLoginPasswordChange(it))
                 },
                 placeholder = {
                     Text(

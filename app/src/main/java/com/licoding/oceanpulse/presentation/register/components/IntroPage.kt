@@ -29,7 +29,7 @@ import kotlinx.coroutines.launch
 fun IntroPage(
     navController: NavController
 ) {
-    val pagerState = rememberPagerState(pageCount = {5}, initialPage = 1)
+    val pagerState = rememberPagerState(pageCount = {4}, initialPage = 0)
     val scope = rememberCoroutineScope()
     Surface {
         Column(
@@ -41,17 +41,17 @@ fun IntroPage(
                 state = pagerState
             ) { page ->
                 when (page) {
-                    1 -> {
+                    0 -> {
                         Page1(pagerState, scope, navController)
                      }
-                    2 -> {
+                    1 -> {
                         Page2(pagerState, scope, navController)
                     }
-                    3 -> {
+                    2 -> {
                         Page3(pagerState, scope, navController)
                     }
-                    4 -> {
-                        Page4(pagerState, scope, navController)
+                    3 -> {
+                        Page4(navController)
                     }
                 }
             }
@@ -59,9 +59,8 @@ fun IntroPage(
     }
 }
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun Page4(pagerState: PagerState, scope: CoroutineScope, navController: NavController) {
+fun Page4(navController: NavController) {
     Column {
         AsyncImage(
             model = R.drawable.oceanplant,

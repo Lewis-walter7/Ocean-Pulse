@@ -8,7 +8,10 @@ import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.core.app.ActivityCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -25,7 +28,15 @@ import com.licoding.oceanpulse.presentation.register.components.RegisterPage
 
 class RegisterActivity: ComponentActivity() {
     private val auth = FirebaseAuth.getInstance()
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(
+                android.Manifest.permission.INTERNET
+            ),
+            0
+        )
         val navigate = {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
@@ -38,7 +49,7 @@ class RegisterActivity: ComponentActivity() {
             factoryProducer = {
                 object : ViewModelProvider.Factory {
                     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                        return RegisterViewModel(firebaseService) as T
+                        return RegisterViewModel(firebaseService, application) as T
                     }
                 }
             }
@@ -50,6 +61,7 @@ class RegisterActivity: ComponentActivity() {
             }
         }
         setContent {
+            val state by viewModel.state.collectAsState()
             OceanPulseTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -61,7 +73,7 @@ class RegisterActivity: ComponentActivity() {
                             IntroPage(navController = navController)
                         }
                         composable("login") {
-                            LoginPage(navController = navController, onEvent = viewModel::onEvent)
+                            LoginPage(navController = navController, onEvent = viewModel::onEvent, state = state)
                         }
                         composable("register") {
                             RegisterPage(
