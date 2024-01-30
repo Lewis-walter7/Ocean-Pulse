@@ -20,7 +20,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.compose.OceanPulseTheme
 import com.google.firebase.auth.FirebaseAuth
-import com.licoding.oceanpulse.domain.FirebaseService
+import com.licoding.oceanpulse.domain.services.FirebaseSignUpService
 import com.licoding.oceanpulse.presentation.register.RegisterViewModel
 import com.licoding.oceanpulse.presentation.register.components.IntroPage
 import com.licoding.oceanpulse.presentation.register.components.LoginPage
@@ -44,7 +44,7 @@ class RegisterActivity: ComponentActivity() {
         if (auth.currentUser != null) {
             navigate()
         }
-         val firebaseService = FirebaseService(application, navigate)
+         val firebaseService = FirebaseSignUpService(application, navigate)
          val viewModel by viewModels<RegisterViewModel>(
             factoryProducer = {
                 object : ViewModelProvider.Factory {

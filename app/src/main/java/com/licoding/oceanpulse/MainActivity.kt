@@ -127,7 +127,7 @@ class MainActivity : ComponentActivity() {
                                 )
                             }
                             composable("quiz"){
-                                Quiz()
+                                MapView()
                             }
                             composable("blog") {
                                 Blog (

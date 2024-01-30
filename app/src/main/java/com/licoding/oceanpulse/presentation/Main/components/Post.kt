@@ -35,9 +35,6 @@ fun Post(
     onEvent: (UploadUIEvent) -> Unit,
     state: UploadUIState
 ) {
-    var title by remember {
-        mutableStateOf("")
-    }
     var shouldFocus by remember { mutableStateOf(true) }
     val focusRequester = remember { FocusRequester() }
 
@@ -65,9 +62,9 @@ fun Post(
                 actions = {
                     TextButton(
                         onClick = {
-
+                            onEvent(UploadUIEvent.OnPostButtonClicked)
                         },
-                        enabled = title.isNotEmpty()
+                        enabled = state.title != null
                     ) {
                         Text(
                             text = "Post"
@@ -100,9 +97,9 @@ fun Post(
                     .imePadding()
             ) {
                 TextField(
-                    value = title,
+                    value = state.title ?: "",
                     onValueChange = {
-                        title = it
+                        onEvent(UploadUIEvent.OnTitleChange(it))
                     },
                     modifier = Modifier
                         .fillMaxWidth()
@@ -114,7 +111,7 @@ fun Post(
                     }
                 )
                 Spacer(modifier = Modifier.height(10.dp))
-                TextArea()
+                TextArea(onEvent)
                 Spacer(modifier = Modifier.height(10.dp))
                 if (state.selectedUri != null) {
                     Box(

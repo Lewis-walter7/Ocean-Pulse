@@ -11,6 +11,8 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -20,7 +22,15 @@ import com.licoding.oceanpulse.presentation.upload.UploadViewModel
 
 class UploadActivity: ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        val viewModel by viewModels<UploadViewModel>()
+        val viewModel by viewModels<UploadViewModel>(
+            factoryProducer = {
+                object : ViewModelProvider.Factory {
+                    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                        return UploadViewModel(application) as T
+                    }
+                }
+            }
+        )
         super.onCreate(savedInstanceState)
         val navigate = {
             startActivity(Intent(this@UploadActivity, MainActivity::class.java))

@@ -1,4 +1,4 @@
-package com.licoding.oceanpulse.domain
+package com.licoding.oceanpulse.domain.services
 
 import android.app.Application
 import android.util.Log
@@ -14,7 +14,7 @@ import com.licoding.oceanpulse.domain.requests.AuthRequest
 import com.licoding.oceanpulse.domain.room.OceanPulseDb
 import kotlinx.coroutines.*
 
-class FirebaseService(
+class FirebaseSignUpService(
     private val application: Application,
     val navigate: () -> Unit,
 ) {
@@ -30,7 +30,7 @@ class FirebaseService(
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         val user = task.result.user
-                        createUserDocument(user = user, name = authRequest.name!!)
+                        createUserDocument(user = user, name = authRequest.name)
                         val docRef = db.collection("users").document(user?.uid ?: "")
                         docRef.get()
                             .addOnSuccessListener { document ->

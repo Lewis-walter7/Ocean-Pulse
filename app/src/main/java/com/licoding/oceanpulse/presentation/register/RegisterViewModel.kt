@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.licoding.oceanpulse.data.models.User
-import com.licoding.oceanpulse.domain.FirebaseService
+import com.licoding.oceanpulse.domain.services.FirebaseSignUpService
 import com.licoding.oceanpulse.domain.requests.AuthRequest
 import com.licoding.oceanpulse.domain.room.DatabaseSingleton
 import kotlinx.coroutines.delay
@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class RegisterViewModel(
-    private val firebaseService: FirebaseService,
+    private val firebaseService: FirebaseSignUpService,
     private val application: Application
 ): ViewModel() {
     private val appDatabase = DatabaseSingleton.getDatabase(application)

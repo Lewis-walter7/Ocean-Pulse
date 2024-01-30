@@ -10,17 +10,20 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.licoding.oceanpulse.presentation.upload.UploadUIEvent
 
 @Composable
-fun TextArea() {
+fun TextArea(
+    onEvent: (UploadUIEvent) -> Unit,
+    ) {
 
-    var value by remember{
+    val value by remember{
         mutableStateOf("")
     }
     BasicTextField(
         value = value,
         onValueChange = {
-            value = it
+            onEvent(UploadUIEvent.OnTitleChange(it))
         },
         maxLines = 2,
         decorationBox = {
