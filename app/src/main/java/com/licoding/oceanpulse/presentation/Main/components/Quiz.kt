@@ -1,12 +1,18 @@
 package com.licoding.oceanpulse.presentation.Main.components
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.licoding.oceanpulse.presentation.Main.quiz.Category
+import com.licoding.oceanpulse.presentation.Main.quiz.RewardBottomSheet
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -14,6 +20,11 @@ import com.licoding.oceanpulse.presentation.Main.quiz.Category
 fun Quiz(
     navController: NavController
 ) {
+    var showBottomSheet by remember { mutableStateOf(false) }
+
+    val onDismissRequest = {
+        showBottomSheet = false
+    }
     Scaffold(
         topBar = {
             TopAppBar(
@@ -21,19 +32,18 @@ fun Quiz(
                     Text(
                         text = "Categories"
                     )
-                }
-            )
-        },
-        floatingActionButton = {
-            FloatingActionButton(
-                onClick ={
-
                 },
-                content = {
-                    Icon(
-                        imageVector = Icons.Default.DateRange,
-                        contentDescription = null
-                    )
+                actions = {
+                    IconButton(
+                        onClick = {
+                            showBottomSheet = !showBottomSheet
+                        }
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.DateRange,
+                            contentDescription = null
+                        )
+                    }
                 }
             )
         }
@@ -41,5 +51,12 @@ fun Quiz(
         Category(
             navController
         )
+        if (showBottomSheet){
+            RewardBottomSheet(
+                onDismissRequest = {
+                    onDismissRequest()
+                }
+            )
+        }
     }
 }

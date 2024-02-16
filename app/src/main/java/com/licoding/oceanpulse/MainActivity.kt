@@ -26,7 +26,7 @@ import com.licoding.oceanpulse.presentation.Main.blog.Blog
 import com.licoding.oceanpulse.presentation.Main.components.*
 import com.licoding.oceanpulse.presentation.Main.quiz.MarineConservation
 import com.licoding.oceanpulse.presentation.Main.quiz.MarineMythology
-import com.licoding.oceanpulse.presentation.Main.quiz.MarinePoluution
+import com.licoding.oceanpulse.presentation.Main.quiz.MarinePollution
 import com.licoding.oceanpulse.presentation.Main.quiz.MarineTechnology
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -146,7 +146,7 @@ class MainActivity : ComponentActivity() {
                                     MarineTechnology()
                                 }
                                 composable("marinepoll") {
-                                    MarinePoluution()
+                                    MarinePollution()
                                 }
                                 composable("marinemyth") {
                                     MarineMythology()

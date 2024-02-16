@@ -7,6 +7,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.style.TextAlign
@@ -22,13 +23,13 @@ fun Category(
     val screenWidth = LocalConfiguration.current.screenWidthDp.dp
     FlowRow(
         modifier = Modifier.fillMaxSize()
-            .padding(top = 70.dp, start = 10.dp, end = 10.dp),
+            .padding(horizontal = 10.dp, vertical = 70.dp),
         horizontalArrangement = Arrangement.spacedBy(5.dp),
         verticalArrangement = Arrangement.spacedBy(5.dp)
     ) {
         categories.map {quiz ->
-            Text(
-                text = quiz.name,
+            Box(
+                contentAlignment = Alignment.Center,
                 modifier = Modifier
                     .width(screenWidth / 2.2f)
                     .height(120.dp)
@@ -37,8 +38,12 @@ fun Category(
                     .clickable {
                         navController.navigate((quiz.route))
                     },
-                textAlign = TextAlign.Center
-            )
+            ) {
+                Text(
+                    text = quiz.name,
+                    textAlign = TextAlign.Center
+                )
+            }
         }
     }
 }

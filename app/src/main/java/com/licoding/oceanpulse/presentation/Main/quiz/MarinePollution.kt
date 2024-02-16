@@ -10,7 +10,7 @@ import androidx.compose.runtime.Composable
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun MarinePoluution() {
+fun MarinePollution() {
     Scaffold(
         topBar = {
             TopAppBar(
