@@ -12,7 +12,7 @@ class FirebaseDocumentServices {
     private val firebaseAuth = FirebaseAuth.getInstance()
     private val scope = CoroutineScope(Dispatchers.Main)
     private val db = Firebase.firestore
-    suspend fun createPostDocument(article: Article) {
+    fun createPostDocument(article: Article) {
         article.let {
             val post = hashMapOf(
                 "createdAt" to article.createdAt,

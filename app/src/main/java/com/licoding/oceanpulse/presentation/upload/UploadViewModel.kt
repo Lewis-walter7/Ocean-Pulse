@@ -6,12 +6,12 @@ import androidx.lifecycle.viewModelScope
 import com.licoding.oceanpulse.data.models.Article
 import com.licoding.oceanpulse.domain.services.FirebaseDocumentServices
 import com.licoding.oceanpulse.domain.services.UploadFile
-import com.licoding.oceanpulse.presentation.Main.components.Articles
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.util.UUID
 
 class UploadViewModel(
     private val application: Application
@@ -46,19 +46,21 @@ class UploadViewModel(
                             image = url.toString(),
                             title = state.value.title!!,
                             body = state.value.body!!,
+                            id = UUID.randomUUID().toString()
                         )
                         uploadService.createPostDocument(newArticle)
                     } else {
                         val newArticle = Article(
                             title = state.value.title!!,
                             body = state.value.body!!,
+                            id = UUID.randomUUID().toString()
                         )
                         uploadService.createPostDocument(newArticle)
                     }
                 }
             }
 
-            is UploadUIEvent.OnBodyuriChange -> {
+            is UploadUIEvent.OnBodyChange -> {
                 _state.update {
                     it.copy(
                         body = event.body

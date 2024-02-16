@@ -111,7 +111,7 @@ fun Post(
                     }
                 )
                 Spacer(modifier = Modifier.height(10.dp))
-                TextArea(onEvent)
+                TextArea(onEvent, state)
                 Spacer(modifier = Modifier.height(10.dp))
                 if (state.selectedUri != null) {
                     Box(

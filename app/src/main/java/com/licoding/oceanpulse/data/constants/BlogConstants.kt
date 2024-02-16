@@ -1,4 +1,4 @@
-package com.licoding.oceanpulse.domain.constants
+package com.licoding.oceanpulse.data.constants
 
 import com.licoding.oceanpulse.data.models.Blog
 

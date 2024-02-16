@@ -1,6 +1,8 @@
 package com.licoding.oceanpulse
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -12,6 +14,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -30,13 +33,13 @@ class RegisterActivity: ComponentActivity() {
     private val auth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        ActivityCompat.requestPermissions(
-            this,
-            arrayOf(
-                android.Manifest.permission.INTERNET
-            ),
-            0
-        )
+        if(!checkSelfPermissions()) {
+            ActivityCompat.requestPermissions(
+                this,
+                CAMERA_PERMISSIONS,
+                0
+            )
+        }
         val navigate = {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
@@ -85,5 +88,22 @@ class RegisterActivity: ComponentActivity() {
                 }
             }
         }
+    }
+
+    private fun checkSelfPermissions(): Boolean {
+        return CAMERA_PERMISSIONS.all {
+            ContextCompat.checkSelfPermission(
+                applicationContext,
+                it,
+            ) == PackageManager.PERMISSION_GRANTED
+        }
+    }
+
+    companion object{
+        val CAMERA_PERMISSIONS = arrayOf(
+            Manifest.permission.INTERNET,
+            Manifest.permission.RECORD_AUDIO,
+            Manifest.permission.CAMERA
+        )
     }
 }

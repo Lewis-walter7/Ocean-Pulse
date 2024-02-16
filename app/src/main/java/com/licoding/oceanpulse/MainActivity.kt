@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
 import com.example.compose.OceanPulseTheme
 import com.google.firebase.auth.FirebaseAuth
@@ -23,6 +24,10 @@ import com.licoding.oceanpulse.data.models.BottomNavigationItem
 import com.licoding.oceanpulse.presentation.Main.MainViewmodel
 import com.licoding.oceanpulse.presentation.Main.blog.Blog
 import com.licoding.oceanpulse.presentation.Main.components.*
+import com.licoding.oceanpulse.presentation.Main.quiz.MarineConservation
+import com.licoding.oceanpulse.presentation.Main.quiz.MarineMythology
+import com.licoding.oceanpulse.presentation.Main.quiz.MarinePoluution
+import com.licoding.oceanpulse.presentation.Main.quiz.MarineTechnology
 
 @OptIn(ExperimentalMaterial3Api::class)
 class MainActivity : ComponentActivity() {
@@ -60,7 +65,7 @@ class MainActivity : ComponentActivity() {
                     title = "Post"
                 ),
                 BottomNavigationItem(
-                    route = "quiz",
+                    route = "quizes",
                     icon = Icons.Default.Quiz,
                     title = "Quiz"
                 ),
@@ -78,6 +83,9 @@ class MainActivity : ComponentActivity() {
             fun startBlogActivity(url: String) {
                 intent.putExtra("url", url)
                 startActivity(intent)
+            }
+            fun startCameraActivity() {
+                startActivity(Intent(this@MainActivity, CameraActivity::class.java))
             }
             val state by viewModel.state.collectAsState()
             OceanPulseTheme {
@@ -123,11 +131,29 @@ class MainActivity : ComponentActivity() {
                                 Profile(
                                     navigate = { navigate() },
                                     state = state,
-                                    onEvent = viewModel::onEvent
+                                    onEvent = viewModel::onEvent,
+                                    onNavigate = {
+                                        startCameraActivity()
+                                    }
                                 )
                             }
-                            composable("quiz"){
-                                MapView()
+
+                            navigation(startDestination = "quiz", route = "quizes") {
+                                composable("quiz") {
+                                    Quiz(navController)
+                                }
+                                composable("marinetech") {
+                                    MarineTechnology()
+                                }
+                                composable("marinepoll") {
+                                    MarinePoluution()
+                                }
+                                composable("marinemyth") {
+                                    MarineMythology()
+                                }
+                                composable("marinecons") {
+                                    MarineConservation()
+                                }
                             }
                             composable("blog") {
                                 Blog (

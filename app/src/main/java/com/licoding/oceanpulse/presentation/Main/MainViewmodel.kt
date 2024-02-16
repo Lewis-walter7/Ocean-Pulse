@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.licoding.oceanpulse.data.models.User
-import com.licoding.oceanpulse.data.remote.repository.getBlogs
+import com.licoding.oceanpulse.data.remote.repository.ApiImpl.getBlogs
 import com.licoding.oceanpulse.domain.response.BlogResponse
 import com.licoding.oceanpulse.domain.room.DatabaseSingleton
 import kotlinx.coroutines.delay

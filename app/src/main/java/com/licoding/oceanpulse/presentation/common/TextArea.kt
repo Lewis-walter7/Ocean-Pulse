@@ -11,23 +11,21 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.licoding.oceanpulse.presentation.upload.UploadUIEvent
+import com.licoding.oceanpulse.presentation.upload.UploadUIState
 
 @Composable
 fun TextArea(
     onEvent: (UploadUIEvent) -> Unit,
-    ) {
-
-    val value by remember{
-        mutableStateOf("")
-    }
+    state: UploadUIState
+) {
     BasicTextField(
-        value = value,
+        value = state.body ?: "",
         onValueChange = {
-            onEvent(UploadUIEvent.OnTitleChange(it))
+            onEvent(UploadUIEvent.OnBodyChange(it))
         },
         maxLines = 2,
         decorationBox = {
-            if(value.isEmpty()) {
+            if(state.body?.isEmpty() == true) {
                 Text(
                     text = "What are you going to talk about?"
                 )
