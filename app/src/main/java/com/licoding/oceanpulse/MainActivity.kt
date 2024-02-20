@@ -28,6 +28,7 @@ import com.licoding.oceanpulse.presentation.Main.quiz.MarineConservation
 import com.licoding.oceanpulse.presentation.Main.quiz.MarineMythology
 import com.licoding.oceanpulse.presentation.Main.quiz.MarinePollution
 import com.licoding.oceanpulse.presentation.Main.quiz.MarineTechnology
+import com.licoding.oceanpulse.presentation.common.Congratulations
 
 @OptIn(ExperimentalMaterial3Api::class)
 class MainActivity : ComponentActivity() {
@@ -146,13 +147,20 @@ class MainActivity : ComponentActivity() {
                                     MarineTechnology()
                                 }
                                 composable("marinepoll") {
-                                    MarinePollution()
+                                    MarinePollution(
+                                        navController = navController,
+                                        onEvent = viewModel::onEvent,
+                                        state = state
+                                    )
                                 }
                                 composable("marinemyth") {
                                     MarineMythology()
                                 }
                                 composable("marinecons") {
                                     MarineConservation()
+                                }
+                                composable("congrats") {
+                                    Congratulations()
                                 }
                             }
                             composable("blog") {

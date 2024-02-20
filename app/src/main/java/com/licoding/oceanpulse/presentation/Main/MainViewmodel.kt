@@ -1,6 +1,7 @@
 package com.licoding.oceanpulse.presentation.Main
 
 import android.app.Application
+import androidx.compose.runtime.*
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.licoding.oceanpulse.data.models.User
@@ -39,6 +40,14 @@ class MainViewmodel(
             MainUIEvent.OnLogOutButtonClicked -> {
                 deleteUser()
             }
+
+            is MainUIEvent.OnSelectedLevelIndexChange -> {
+                _state.update {
+                    it.copy(
+                        selectedLevelIndex = event.index
+                    )
+                }
+            }
         }
     }
     fun deleteUser(){
@@ -46,5 +55,4 @@ class MainViewmodel(
             appDatabase.userDao.deleteUser()
         }
     }
-
 }
