@@ -21,6 +21,8 @@ import androidx.navigation.compose.rememberNavController
 import com.example.compose.OceanPulseTheme
 import com.google.firebase.auth.FirebaseAuth
 import com.licoding.oceanpulse.data.models.BottomNavigationItem
+import com.licoding.oceanpulse.domain.utils.AlarmManager
+import com.licoding.oceanpulse.domain.utils.TimerReceiver
 import com.licoding.oceanpulse.presentation.Main.MainViewmodel
 import com.licoding.oceanpulse.presentation.Main.blog.Blog
 import com.licoding.oceanpulse.presentation.Main.components.*
@@ -33,6 +35,8 @@ import com.licoding.oceanpulse.presentation.common.Congratulations
 @OptIn(ExperimentalMaterial3Api::class)
 class MainActivity : ComponentActivity() {
     private val auth = FirebaseAuth.getInstance()
+
+    private val alarmManager = AlarmManager(this)
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +50,7 @@ class MainActivity : ComponentActivity() {
                 }
             }
         )
+        alarmManager.startTimer()
         setContent {
             var selectedIndex by remember {
                 mutableIntStateOf(0)

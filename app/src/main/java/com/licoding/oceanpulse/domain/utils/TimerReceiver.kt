@@ -5,9 +5,13 @@ import android.content.Context
 import android.content.Intent
 import com.licoding.oceanpulse.data.constants.facts
 import com.licoding.oceanpulse.data.constants.getFact
+import com.licoding.oceanpulse.presentation.Main.MainUIEvent
 
-class TimerReceiver: BroadcastReceiver() {
+class TimerReceiver(
+    private val onEvent: (MainUIEvent) -> Unit
+): BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
         val fact = getFact(facts)
+        onEvent(MainUIEvent.UpdateFact(fact))
     }
 }

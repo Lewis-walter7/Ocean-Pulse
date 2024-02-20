@@ -48,6 +48,18 @@ class MainViewmodel(
                     )
                 }
             }
+
+            is MainUIEvent.UpdateFact -> {
+                _state.update {
+                    it.copy(
+                        fact = event.fact
+                    )
+                }
+
+                if (state.value.fact != null) {
+                    println(state.value.fact)
+                }
+            }
         }
     }
     fun deleteUser(){
