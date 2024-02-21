@@ -32,11 +32,9 @@ import com.licoding.oceanpulse.presentation.Main.quiz.MarinePollution
 import com.licoding.oceanpulse.presentation.Main.quiz.MarineTechnology
 import com.licoding.oceanpulse.presentation.common.Congratulations
 
-@OptIn(ExperimentalMaterial3Api::class)
 class MainActivity : ComponentActivity() {
     private val auth = FirebaseAuth.getInstance()
 
-    private val alarmManager = AlarmManager(this)
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +48,7 @@ class MainActivity : ComponentActivity() {
                 }
             }
         )
+        val alarmManager = AlarmManager(this)
         alarmManager.startTimer()
         setContent {
             var selectedIndex by remember {

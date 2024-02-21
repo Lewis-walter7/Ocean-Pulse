@@ -13,5 +13,7 @@ class TimerReceiver(
     override fun onReceive(context: Context?, intent: Intent?) {
         val fact = getFact(facts)
         onEvent(MainUIEvent.UpdateFact(fact))
+
+        println(fact)
     }
 }
