@@ -8,15 +8,16 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Camera
 import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material.icons.filled.PersonAdd
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
-import com.licoding.oceanpulse.data.models.User
 import com.licoding.oceanpulse.presentation.Main.MainUIEvent
 import com.licoding.oceanpulse.presentation.Main.MainUIState
 import com.licoding.oceanpulse.presentation.common.UserPhoto
@@ -92,10 +93,11 @@ fun Profile(
                         text = "98",
                     )
                     Text(
-                        text = "Following"
+                        text = "Following",
+                        fontSize = 13.sp
                     )
                 }
-                Divider(modifier = Modifier.height(30.dp).width(1.dp))
+                VerticalDivider(modifier = Modifier.height(30.dp).width(1.dp))
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
@@ -103,10 +105,11 @@ fun Profile(
                         text = "98",
                     )
                     Text(
-                        text = "Followers"
+                        text = "Followers",
+                        fontSize = 13.sp
                     )
                 }
-                Divider(modifier = Modifier.height(30.dp).width(1.dp))
+                VerticalDivider(modifier = Modifier.height(30.dp).width(1.dp))
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
@@ -114,35 +117,52 @@ fun Profile(
                         text = "98",
                     )
                     Text(
-                        text = "Following"
+                        text = "Likes",
+                        fontSize = 13.sp
                     )
                 }
             }
             Spacer(modifier = Modifier.height(16.dp))
             Row(
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center
             ) {
                 TextButton(
                     onClick = {
 
                     },
                     modifier = Modifier
-                        .background(shape = RoundedCornerShape(10), color = MaterialTheme.colorScheme.secondary)
+                        .width(150.dp)
+                        .background(shape = RoundedCornerShape(10), color = MaterialTheme.colorScheme.onSurface)
                 ) {
                     Text(
-                        text = "Edit profile"
+                        text = "Edit profile",
+                        color = MaterialTheme.colorScheme.surface,
+                        fontSize = 17.sp
+                    )
+                }
+                Spacer(modifier = Modifier.width(16.dp))
+                IconButton(
+                    onClick = {
+
+                    },
+                    modifier = Modifier
+                        .background(Color.LightGray, shape = RoundedCornerShape(10))
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.PersonAdd,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.surface
                     )
                 }
             }
 
             Text(
-                "Profile",
-                modifier = Modifier.clickable {
-                    Firebase.auth.signOut()
-                    navigate()
-                    onEvent(MainUIEvent.OnLogOutButtonClicked)
-                }
+                text = state.user?.bio ?: "",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .align(Alignment.CenterHorizontally)
             )
         }
     }

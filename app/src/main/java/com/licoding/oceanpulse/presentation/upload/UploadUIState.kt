@@ -6,4 +6,5 @@ data class UploadUIState(
     val selectedUri: Uri? = null,
     val title : String? = null,
     val body: String? = null,
+    val shouldReset: Boolean = false
 )

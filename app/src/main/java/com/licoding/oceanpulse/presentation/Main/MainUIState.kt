@@ -7,5 +7,5 @@ import com.licoding.oceanpulse.data.models.User
 data class MainUIState(
     val user: User? = null,
     val selectedLevelIndex: Int = 0,
-    val fact: Fact? = null
+    val fact: Fact? = null,
 )

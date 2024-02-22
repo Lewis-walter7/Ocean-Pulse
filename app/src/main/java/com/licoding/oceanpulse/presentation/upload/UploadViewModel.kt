@@ -46,14 +46,27 @@ class UploadViewModel(
                             image = url.toString(),
                             title = state.value.title!!,
                             body = state.value.body!!,
-                            id = UUID.randomUUID().toString()
+                            id = UUID.randomUUID().toString(),
+                            createdAt = System.currentTimeMillis()
                         )
                         uploadService.createPostDocument(newArticle)
+
+                        if (state.value.shouldReset) {
+                            _state.update {
+                                it.copy(
+                                    selectedUri = null,
+                                    shouldReset = false,
+                                    title = null,
+                                    body = null
+                                )
+                            }
+                        }
                     } else {
                         val newArticle = Article(
                             title = state.value.title!!,
                             body = state.value.body!!,
-                            id = UUID.randomUUID().toString()
+                            id = UUID.randomUUID().toString(),
+                            createdAt = System.currentTimeMillis()
                         )
                         uploadService.createPostDocument(newArticle)
                     }
@@ -76,4 +89,12 @@ class UploadViewModel(
             }
         }
     }
+}
+
+fun reset(shouldReset: Boolean): Boolean {
+    return shouldReset
+}
+
+fun getBooleanValue(function: () -> Boolean): Boolean {
+    return function()
 }

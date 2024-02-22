@@ -4,6 +4,8 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.firestore
 import com.licoding.oceanpulse.data.models.Article
+import com.licoding.oceanpulse.presentation.upload.getBooleanValue
+import com.licoding.oceanpulse.presentation.upload.reset
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -26,12 +28,16 @@ class FirebaseDocumentServices {
                 .set(post)
                 .addOnSuccessListener {
                     scope.launch(Dispatchers.Main) {
-                        println("Successfully created the document")
+                        getBooleanValue {
+                            reset(true)
+                        }
                     }
                 }
                 .addOnFailureListener{
                     scope.launch(Dispatchers.Main) {
-                        println("Failed to add the document")
+                        getBooleanValue {
+                            reset(false)
+                        }
                     }
                 }
         }
