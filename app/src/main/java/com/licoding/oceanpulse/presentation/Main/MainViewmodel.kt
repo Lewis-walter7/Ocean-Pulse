@@ -22,7 +22,8 @@ class MainViewmodel(
     var user: User? = null
     var posts: List<BlogResponse> = emptyList()
     val userArticles = GetUserArticles.articles
-    val articles = GetArticles.fetchArticles()
+    private val getArticles = GetArticles()
+    val articles = getArticles.articles
     init {
         viewModelScope.launch {
             delay(1000)
@@ -32,6 +33,7 @@ class MainViewmodel(
                 )
             }
             posts = getBlogs()
+            getArticles.fetchArticles()
         }
         GetUserArticles.getArticles()
         println(articles)

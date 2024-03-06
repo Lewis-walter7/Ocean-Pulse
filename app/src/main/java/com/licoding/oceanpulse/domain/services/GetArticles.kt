@@ -5,22 +5,22 @@ import com.google.firebase.Firebase
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.firestore
 import com.licoding.oceanpulse.domain.models.Article
+import kotlinx.coroutines.tasks.await
 
 @SuppressLint("StaticFieldLeak")
-object GetArticles {
+class GetArticles {
     private val db = Firebase.firestore
     private val articlesCollection = db.collection("posts")
-    private val articles = mutableListOf<Article>()
-    fun fetchArticles(): List<Article> {
-        articlesCollection.get().addOnSuccessListener { querySnapshot ->
+    val articles = mutableListOf<Article>()
+    suspend fun fetchArticles() =
+        articlesCollection.get()
+            .addOnSuccessListener { querySnapshot ->
             querySnapshot.documents.forEach{ documentSnapshot ->
                 val article = documentSnapshot.toArticle()
                 articles.add(article)
             }
-        }
+        }.await()
 
-        return articles
-    }
 }
 
 private fun DocumentSnapshot.toArticle(): Article {
