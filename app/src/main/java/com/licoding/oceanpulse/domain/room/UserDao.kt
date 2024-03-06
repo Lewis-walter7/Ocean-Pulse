@@ -3,7 +3,7 @@ package com.licoding.oceanpulse.domain.room
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Upsert
-import com.licoding.oceanpulse.data.models.User
+import com.licoding.oceanpulse.domain.models.User
 
 @Dao
 interface UserDao {

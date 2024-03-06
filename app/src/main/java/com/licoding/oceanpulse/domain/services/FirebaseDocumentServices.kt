@@ -3,7 +3,7 @@ package com.licoding.oceanpulse.domain.services
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.firestore
-import com.licoding.oceanpulse.data.models.Article
+import com.licoding.oceanpulse.domain.models.Article
 import com.licoding.oceanpulse.presentation.upload.getBooleanValue
 import com.licoding.oceanpulse.presentation.upload.reset
 import kotlinx.coroutines.CoroutineScope

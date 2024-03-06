@@ -8,7 +8,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.Dp
 import coil.compose.AsyncImage
 import com.licoding.oceanpulse.R
-import com.licoding.oceanpulse.data.models.User
+import com.licoding.oceanpulse.domain.models.User
 
 @Composable
 fun UserPhoto(size: Dp, user: User) {

@@ -1,7 +1,7 @@
 package com.licoding.oceanpulse.data.remote.repository
 
-import com.licoding.oceanpulse.data.models.Article
-import com.licoding.oceanpulse.data.models.HttpRoutes
+import com.licoding.oceanpulse.domain.models.Article
+import com.licoding.oceanpulse.domain.models.HttpRoutes
 import com.licoding.oceanpulse.data.remote.client
 import com.licoding.oceanpulse.domain.response.BlogResponse
 import io.ktor.client.call.*

@@ -9,7 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.licoding.oceanpulse.data.constants.quizes
-import com.licoding.oceanpulse.data.models.Quiz
+import com.licoding.oceanpulse.domain.models.Quiz
 import com.licoding.oceanpulse.presentation.Main.MainUIEvent
 import com.licoding.oceanpulse.presentation.Main.MainUIState
 

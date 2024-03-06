@@ -1,6 +1,6 @@
 package com.licoding.oceanpulse.data.remote.repository
 
-import com.licoding.oceanpulse.data.models.Article
+import com.licoding.oceanpulse.domain.models.Article
 import com.licoding.oceanpulse.domain.response.BlogResponse
 
 

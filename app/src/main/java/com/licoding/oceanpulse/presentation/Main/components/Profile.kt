@@ -2,13 +2,14 @@ package com.licoding.oceanpulse.presentation.Main.components
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Camera
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.PersonAdd
+import androidx.compose.material.icons.filled.ViewWeek
+import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -16,8 +17,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.google.firebase.Firebase
-import com.google.firebase.auth.auth
 import com.licoding.oceanpulse.presentation.Main.MainUIEvent
 import com.licoding.oceanpulse.presentation.Main.MainUIState
 import com.licoding.oceanpulse.presentation.common.UserPhoto
@@ -157,13 +156,47 @@ fun Profile(
                     )
                 }
             }
+            if (state.user?.bio != null) {
+                Spacer(modifier = Modifier.height(16.dp))
+                Text(
+                    text = state.user.bio,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .align(Alignment.CenterHorizontally)
+                )
+            }
 
-            Text(
-                text = state.user?.bio ?: "",
+            Spacer(modifier = Modifier.height(16.dp))
+            Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .align(Alignment.CenterHorizontally)
-            )
+                    .padding(horizontal = 30.dp),
+                horizontalArrangement = Arrangement.SpaceAround
+            ) {
+                IconButton(
+                    onClick = {
+
+                    }
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.ViewWeek,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onSurface
+                    )
+                }
+
+                IconButton(
+                    onClick = {
+
+                    }
+                ) {
+                    Icon(
+                        imageVector = Icons.Outlined.FavoriteBorder,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onSurface
+                    )
+                }
+            }
         }
     }
 }

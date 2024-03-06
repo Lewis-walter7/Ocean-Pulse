@@ -1,6 +1,6 @@
 package com.licoding.oceanpulse.data.constants
 
-import com.licoding.oceanpulse.data.models.Blog
+import com.licoding.oceanpulse.domain.models.Blog
 
 val BlogConstants = listOf(
     Blog(

@@ -1,6 +1,6 @@
 package com.licoding.oceanpulse.data.constants
 
-import com.licoding.oceanpulse.data.models.Fact
+import com.licoding.oceanpulse.domain.models.Fact
 
 val facts = arrayOf(
     Fact(

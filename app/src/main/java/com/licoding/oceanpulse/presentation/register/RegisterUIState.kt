@@ -1,6 +1,6 @@
 package com.licoding.oceanpulse.presentation.register
 
-import com.licoding.oceanpulse.data.models.User
+import com.licoding.oceanpulse.domain.models.User
 
 data class RegisterUIState(
     val registerEmail:String? = null,

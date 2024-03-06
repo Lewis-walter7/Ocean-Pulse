@@ -1,4 +1,4 @@
-package com.licoding.oceanpulse.data.models
+package com.licoding.oceanpulse.domain.models
 
 object HttpRoutes {
     val baseUrl = "https://oceanpulse-backend.vercel.app"

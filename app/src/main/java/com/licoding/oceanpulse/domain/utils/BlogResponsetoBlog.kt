@@ -1,6 +1,6 @@
 package com.licoding.oceanpulse.domain.utils
 
-import com.licoding.oceanpulse.data.models.Blog
+import com.licoding.oceanpulse.domain.models.Blog
 import com.licoding.oceanpulse.domain.response.BlogResponse
 
 

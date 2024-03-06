@@ -3,11 +3,12 @@ package com.licoding.oceanpulse.presentation.Main
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.licoding.oceanpulse.data.models.User
+import com.licoding.oceanpulse.domain.models.User
 import com.licoding.oceanpulse.data.remote.repository.ApiImpl.getBlogs
 import com.licoding.oceanpulse.data.remote.userRepo.GetUserArticles
 import com.licoding.oceanpulse.domain.response.BlogResponse
 import com.licoding.oceanpulse.domain.room.DatabaseSingleton
+import com.licoding.oceanpulse.domain.services.GetArticles
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -20,7 +21,8 @@ class MainViewmodel(
     private val appDatabase = DatabaseSingleton.getDatabase(application)
     var user: User? = null
     var posts: List<BlogResponse> = emptyList()
-    val articles = GetUserArticles.articles
+    val userArticles = GetUserArticles.articles
+    val articles = GetArticles.fetchArticles()
     init {
         viewModelScope.launch {
             delay(1000)
@@ -32,6 +34,7 @@ class MainViewmodel(
             posts = getBlogs()
         }
         GetUserArticles.getArticles()
+        println(articles)
     }
 
     private val _state = MutableStateFlow(MainUIState())

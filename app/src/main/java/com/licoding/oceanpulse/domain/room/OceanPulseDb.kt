@@ -4,7 +4,7 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.licoding.oceanpulse.data.models.User
+import com.licoding.oceanpulse.domain.models.User
 
 @Database(
     entities = [User::class],

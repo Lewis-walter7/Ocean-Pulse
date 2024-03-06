@@ -20,9 +20,8 @@ import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
 import com.example.compose.OceanPulseTheme
 import com.google.firebase.auth.FirebaseAuth
-import com.licoding.oceanpulse.data.models.BottomNavigationItem
+import com.licoding.oceanpulse.domain.models.BottomNavigationItem
 import com.licoding.oceanpulse.domain.utils.AlarmManager
-import com.licoding.oceanpulse.domain.utils.TimerReceiver
 import com.licoding.oceanpulse.presentation.Main.MainViewmodel
 import com.licoding.oceanpulse.presentation.Main.blog.Blog
 import com.licoding.oceanpulse.presentation.Main.components.*
@@ -30,6 +29,7 @@ import com.licoding.oceanpulse.presentation.Main.quiz.MarineConservation
 import com.licoding.oceanpulse.presentation.Main.quiz.MarineMythology
 import com.licoding.oceanpulse.presentation.Main.quiz.MarinePollution
 import com.licoding.oceanpulse.presentation.Main.quiz.MarineTechnology
+import com.licoding.oceanpulse.presentation.Main.search.Search
 import com.licoding.oceanpulse.presentation.common.Congratulations
 
 class MainActivity : ComponentActivity() {
@@ -129,8 +129,13 @@ class MainActivity : ComponentActivity() {
                         NavHost(navController = navController, startDestination = "home") {
                             composable("home") {
                                 Home(
-                                    context = application
+                                    context = application,
+                                    navController = navController,
+                                    articles = viewModel.articles
                                 )
+                            }
+                            composable("search") {
+                                Search(navController = navController)
                             }
                             composable("profile") {
                                 Profile(

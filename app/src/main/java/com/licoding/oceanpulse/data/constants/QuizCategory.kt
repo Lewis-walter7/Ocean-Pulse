@@ -1,6 +1,6 @@
 package com.licoding.oceanpulse.data.constants
 
-import com.licoding.oceanpulse.data.models.QuizCategory
+import com.licoding.oceanpulse.domain.models.QuizCategory
 
 val categories = arrayOf(
     QuizCategory(

@@ -1,4 +1,4 @@
-package com.licoding.oceanpulse.data.models
+package com.licoding.oceanpulse.domain.models
 
 import androidx.compose.ui.graphics.vector.ImageVector
 

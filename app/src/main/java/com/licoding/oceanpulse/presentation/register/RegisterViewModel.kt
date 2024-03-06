@@ -3,7 +3,7 @@ package com.licoding.oceanpulse.presentation.register
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.licoding.oceanpulse.data.models.User
+import com.licoding.oceanpulse.domain.models.User
 import com.licoding.oceanpulse.domain.services.FirebaseSignUpService
 import com.licoding.oceanpulse.domain.requests.AuthRequest
 import com.licoding.oceanpulse.domain.room.DatabaseSingleton

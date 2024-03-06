@@ -3,7 +3,7 @@ package com.licoding.oceanpulse.presentation.upload
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.licoding.oceanpulse.data.models.Article
+import com.licoding.oceanpulse.domain.models.Article
 import com.licoding.oceanpulse.domain.services.FirebaseDocumentServices
 import com.licoding.oceanpulse.domain.services.UploadFile
 import kotlinx.coroutines.Dispatchers

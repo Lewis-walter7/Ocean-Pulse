@@ -1,6 +1,6 @@
 package com.licoding.oceanpulse.presentation.Main
 
-import com.licoding.oceanpulse.data.models.Fact
+import com.licoding.oceanpulse.domain.models.Fact
 
 sealed interface MainUIEvent {
     data object OnLogOutButtonClicked: MainUIEvent

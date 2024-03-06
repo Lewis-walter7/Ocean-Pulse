@@ -9,7 +9,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.firestore
-import com.licoding.oceanpulse.data.models.User
+import com.licoding.oceanpulse.domain.models.User
 import com.licoding.oceanpulse.domain.requests.AuthRequest
 import com.licoding.oceanpulse.domain.room.OceanPulseDb
 import kotlinx.coroutines.*

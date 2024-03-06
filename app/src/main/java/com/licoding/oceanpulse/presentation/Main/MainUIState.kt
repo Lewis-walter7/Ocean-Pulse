@@ -1,7 +1,7 @@
 package com.licoding.oceanpulse.presentation.Main
 
-import com.licoding.oceanpulse.data.models.Fact
-import com.licoding.oceanpulse.data.models.User
+import com.licoding.oceanpulse.domain.models.Fact
+import com.licoding.oceanpulse.domain.models.User
 
 
 data class MainUIState(

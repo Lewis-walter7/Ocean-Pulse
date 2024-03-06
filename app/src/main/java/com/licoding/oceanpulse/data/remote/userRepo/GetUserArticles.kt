@@ -5,7 +5,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.QueryDocumentSnapshot
 import com.google.firebase.firestore.firestore
-import com.licoding.oceanpulse.data.models.Article
+import com.licoding.oceanpulse.domain.models.Article
 
 @SuppressLint("StaticFieldLeak")
 object GetUserArticles {

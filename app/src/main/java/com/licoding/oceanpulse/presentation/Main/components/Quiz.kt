@@ -1,15 +1,10 @@
 package com.licoding.oceanpulse.presentation.Main.components
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.licoding.oceanpulse.presentation.Main.quiz.Category
 import com.licoding.oceanpulse.presentation.Main.quiz.RewardBottomSheet
